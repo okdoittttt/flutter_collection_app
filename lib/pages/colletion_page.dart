@@ -10,19 +10,6 @@ class CollectionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("숲,어,마켓!"),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'Collection Page',
-          style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold
-          ),
-        ),
-      ),
       bottomNavigationBar: MybottomBar(),
     );
   }
