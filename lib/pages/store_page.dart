@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sns_test/items/store_item.dart';
+import 'package:flutter_sns_test/items/restaurant_item.dart';
 
 import '../items/bottom_nav_bar.dart';
 
@@ -581,7 +581,7 @@ class StorePage extends StatelessWidget {
                                     shrinkWrap: true,
                                     scrollDirection: Axis.vertical,
                                     children: [
-                                      MyStoreItem(),
+                                      MyRestaurantItem(),
                                     ],
                                   ),
                                 ],
