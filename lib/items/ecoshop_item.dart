@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_sns_test/firebase_service/storage_service.dart';
+
+import '../pages/detail/store_detail.dart';
 
 class MyEcoShopItem extends StatelessWidget {
   const MyEcoShopItem({super.key});
@@ -9,6 +10,7 @@ class MyEcoShopItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance.collection('ecoshop').snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -17,70 +19,89 @@ class MyEcoShopItem extends StatelessWidget {
           return Column(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
               Map<String, dynamic>? data = document.data() as Map<String, dynamic>?;
+              String name = data?['name'] ?? '';
+              String img = data?['img'] ?? '';
+              String location = data?['location'] ?? '';
+              String rating = data?['rating'] ?? '';
 
-              return Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 12),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(16),
-                          child: Image.network(
-                            data?['img'] ?? '',
-                            width: double.infinity,
-                            height: 230,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => StoreDetailPage(
+                        name: name,
+                        location: location,
+                        img: img,
+                        rating: rating,
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(bottom: 4),
-                        child: Text(
-                          data?['name'] ?? '',
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              data?['location'] ?? '',
-                              style: TextStyle(
-                                fontWeight: FontWeight.normal,
-                                fontSize: 12,
-                              ),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 12),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: Image.network(
+                              img,
+                              width: double.infinity,
+                              height: 230,
+                              fit: BoxFit.cover,
                             ),
                           ),
-                          Row(
-                            children: [
-                              Text(
-                                data?['rating'] ?? '',
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(bottom: 4),
+                          child: Text(
+                            name,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                location,
                                 style: TextStyle(
                                   fontWeight: FontWeight.normal,
                                   fontSize: 12,
                                 ),
                               ),
-                              Icon(
-                                Icons.star_rounded,
-                                color: Colors.yellow,
-                                size: 24,
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ],
+                            ),
+                            Row(
+                              children: [
+                                Text(
+                                  rating,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                                Icon(
+                                  Icons.star_rounded,
+                                  color: Colors.yellow,
+                                  size: 24,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
