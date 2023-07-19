@@ -5,14 +5,18 @@ import 'package:flutter/material.dart';
 import '../pages/detail/store_detail.dart';
 
 class MyEcoShopItem extends StatelessWidget {
-  const MyEcoShopItem({super.key});
+  final String searchKeyword;
 
+  const MyEcoShopItem({Key? key, required this.searchKeyword}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance.collection('ecoshop').snapshots(),
+      stream: FirebaseFirestore.instance
+          .collection('ecoshop')
+          .where('name', isGreaterThanOrEqualTo: searchKeyword.toLowerCase())
+          .orderBy('name')
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
         if (snapshot.hasData) {
           // Firebase에서 가져온 문서 개수만큼 위젯을 출력합니다.
@@ -24,91 +28,96 @@ class MyEcoShopItem extends StatelessWidget {
               String location = data?['location'] ?? '';
               String rating = data?['rating'] ?? '';
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => StoreDetailPage(
-                        name: name,
-                        location: location,
-                        img: img,
-                        rating: rating,
+              // 검색어가 비어있거나 이름에 검색어가 포함된 경우에만 출력
+              if (searchKeyword.isEmpty || name.toLowerCase().contains(searchKeyword.toLowerCase())) {
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => StoreDetailPage(
+                          name: name,
+                          location: location,
+                          img: img,
+                          rating: rating,
+                        ),
                       ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
                     ),
-                  );
-                },
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 12),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(
-                              img,
-                              width: double.infinity,
-                              height: 230,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 4),
-                          child: Text(
-                            name,
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Text(
-                                location,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.normal,
-                                  fontSize: 12,
-                                ),
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(16, 0, 16, 12),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 12),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(16),
+                              child: Image.network(
+                                img,
+                                width: double.infinity,
+                                height: 230,
+                                fit: BoxFit.cover,
                               ),
                             ),
-                            Row(
-                              children: [
-                                Text(
-                                  rating,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 4),
+                            child: Text(
+                              name,
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  location,
                                   style: TextStyle(
                                     fontWeight: FontWeight.normal,
                                     fontSize: 12,
                                   ),
                                 ),
-                                Icon(
-                                  Icons.star_rounded,
-                                  color: Colors.yellow,
-                                  size: 24,
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    rating,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.star_rounded,
+                                    color: Colors.yellow,
+                                    size: 24,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
+                );
+              } else {
+                // 검색어에 해당하는 데이터가 없을 경우 빈 컨테이너를 반환
+                return Container();
+              }
             }).toList(),
           );
         }
-
         // 데이터가 없는 경우 로딩 표시를 표시합니다.
         return Center(child: CircularProgressIndicator());
       },

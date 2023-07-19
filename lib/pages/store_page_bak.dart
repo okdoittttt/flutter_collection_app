@@ -1,18 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sns_test/items/ecoshop_item.dart';
+import 'package:flutter_sns_test/items/restaurant_item.dart';
 
 import '../items/bottom_nav_bar.dart';
-import '../items/ecoshop_item.dart';
-import '../items/restaurant_item.dart';
 
-class StorePage extends StatefulWidget {
-  const StorePage({super.key});
-
-  @override
-  State<StorePage> createState() => _StorePageState();
-}
-
-class _StorePageState extends State<StorePage> {
+class StorePage extends StatelessWidget {
+  // const StorePage({super.key});
   String searchKeyword = '';
 
   @override
@@ -65,11 +59,11 @@ class _StorePageState extends State<StorePage> {
                               width: 200,
                               child: TextFormField(
                                 obscureText: false,
-                                onChanged: (val) {
-                                  setState(() {
-                                    searchKeyword = val;
-                                  });
-                                },
+                                // onChanged: (val) {
+                                //   setState(() {
+                                //     searchKeyword = val;
+                                //   });
+                                // },
                                 decoration: InputDecoration(
                                   labelText: 'Search list ...',
                                   enabledBorder: InputBorder.none,
@@ -85,7 +79,7 @@ class _StorePageState extends State<StorePage> {
                         IconButton(
                           onPressed: () {
                             print('Search Button Press...');
-                            print(searchKeyword);
+                            // print(searchKeyword);
                           },
                           icon: Icon(Icons.more),
                         ),
@@ -135,21 +129,21 @@ class _StorePageState extends State<StorePage> {
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyRestaurantItem(searchKeyword: searchKeyword);
+                                return MyRestaurantItem();
                               },
                             ),
                             ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyEcoShopItem(searchKeyword: searchKeyword);
+                                return MyEcoShopItem();
                               },
                             ),
                             ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyRestaurantItem(searchKeyword: searchKeyword);
+                                return MyRestaurantItem();
                               },
                             ),
                           ],

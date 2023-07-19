@@ -1,10 +1,20 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth {
+  Future<String> printUserEmail() async {
+    String userEmail = '';
 
-  Future<String> printUserID() async {
+    await FirebaseAuth.instance
+        .authStateChanges()
+        .listen((User? user) {
+      if (user != null) {
+        userEmail = user.email ?? '';
+        print(userEmail);
+      }
+    }).asFuture();
 
-    return 'SET!';
+    return userEmail;
   }
+
 
 }

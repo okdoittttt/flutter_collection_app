@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_sns_test/main_screen.dart';
 import 'package:flutter_sns_test/pages/colletion_page.dart';
 import 'package:flutter_sns_test/pages/store_page.dart';
+import 'package:flutter_sns_test/pages/test_page.dart';
 import 'package:flutter_sns_test/pages/view_more.dart';
 
 class MybottomBar extends StatelessWidget {

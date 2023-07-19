@@ -2,11 +2,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // firebase stoage
-import 'package:firebase_storage/firebase_storage.dart'; // firebase stoage
-import 'package:flutter_sns_test/firebase_service/auth_service.dart';
 import 'package:flutter_sns_test/firebase_service/storage_service.dart';
-import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:flutter_sns_test/firebase_service/auth_service.dart';
 
 import '../items/bottom_nav_bar.dart';
 
@@ -16,8 +13,10 @@ class ViewMorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Storage storage = Storage();
-    final Auth auth = Auth();
-    final Future<String> userID = auth.printUserID();
+    final Auth authservice = Auth();
+
+    final Future<String> userEmail = authservice.printUserEmail();
+    print(userEmail);
 
     return GestureDetector(
       onTap: () => FocusScope.of(context).requestFocus(),
@@ -89,12 +88,28 @@ class ViewMorePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(24, 4, 0, 16),
-                child: Text(
-                  'Firebase@emailehere.com',
-                ),
-              ),
+              // Padding(
+              //   padding: EdgeInsetsDirectional.fromSTEB(24, 4, 0, 16),
+              //   child: FutureBuilder<String>(
+              //     future: getUserEmail(),
+              //     builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              //       if (snapshot.connectionState == ConnectionState.waiting) {
+              //         return CircularProgressIndicator();
+              //       } else if (snapshot.hasError) {
+              //         return Text('Error: ${snapshot.error}');
+              //       } else {
+              //         String email = snapshot.data ?? '';
+              //         return Text(
+              //           email,
+              //           style: TextStyle(
+              //             fontSize: 16,
+              //             fontWeight: FontWeight.bold,
+              //           ),
+              //         );
+              //       }
+              //     },
+              //   ),
+              // ),
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24, 4, 0, 0),
                 child: Text(

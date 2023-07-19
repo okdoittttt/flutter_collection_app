@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sns_test/items/bottom_nav_bar.dart';
 
 class StoreDetailPage extends StatelessWidget {
   final String name;
@@ -312,6 +313,7 @@ class StoreDetailPage extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: MybottomBar(),
     );
   }
 }
