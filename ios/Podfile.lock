@@ -706,7 +706,7 @@ PODS:
   - Firebase/Storage (10.12.0):
     - Firebase/CoreOnly
     - FirebaseStorage (~> 10.12.0)
-  - firebase_auth (4.7.0):
+  - firebase_auth (4.7.1):
     - Firebase/Auth (= 10.12.0)
     - firebase_core
     - Flutter
@@ -871,6 +871,8 @@ PODS:
   - SwiftyGif (5.4.4)
   - twitter_login (0.0.1):
     - Flutter
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -886,6 +888,7 @@ DEPENDENCIES:
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - sign_in_with_apple (from `.symlinks/plugins/sign_in_with_apple/ios`)
   - twitter_login (from `.symlinks/plugins/twitter_login/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
@@ -948,6 +951,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/sign_in_with_apple/ios"
   twitter_login:
     :path: ".symlinks/plugins/twitter_login/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   abseil: 926fb7a82dc6d2b8e1f2ed7f3a718bce691d1e46
@@ -963,7 +968,7 @@ SPEC CHECKSUMS:
   FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
   file_picker: ce3938a0df3cc1ef404671531facef740d03f920
   Firebase: 07150e75d142fb9399f6777fa56a187b17f833a0
-  firebase_auth: fdfcf37a6f37b776d56a6b7771df84d0bafdc650
+  firebase_auth: a57bf431e73283cbffaa562717256ec6bd2d8d4c
   firebase_core: e477125798fc37cd4ab43ca6a8536bf7e0929c00
   firebase_database: 37ea2144bf40525d3ae4df40f70ae4bc3db715a5
   firebase_dynamic_links: d85cf455646322fd101c8a5a5942c3d47132fe80
@@ -994,6 +999,7 @@ SPEC CHECKSUMS:
   sign_in_with_apple: f3bf75217ea4c2c8b91823f225d70230119b8440
   SwiftyGif: 93a1cc87bf3a51916001cf8f3d63835fb64c819f
   twitter_login: 2794db69b7640681171b17b3c2c84ad9dfb4a57f
+  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
 
 PODFILE CHECKSUM: 70d9d25280d0dd177a5f637cdb0f0b0b12c6a189
 

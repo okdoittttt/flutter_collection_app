@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/detail/store_detail.dart';
-// MyRestaurantItem
 
 class StoreItems extends StatelessWidget {
   final String searchKeyword; // searchKeyword를 매개변수로 추가

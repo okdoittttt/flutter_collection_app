@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../items/bottom_nav_bar.dart';
-import '../items/StoreItems.dart';
+import '../items/storeItems.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});

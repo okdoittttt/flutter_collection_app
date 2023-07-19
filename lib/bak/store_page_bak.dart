@@ -1,7 +1,7 @@
 // import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
 // import 'package:flutter_sns_test/items/ecoshop_item.dart';
-// import 'package:flutter_sns_test/items/StoreItems.dart';
+// import 'package:flutter_sns_test/items/storeItems.dart';
 //
 // import '../items/bottom_nav_bar.dart';
 //
