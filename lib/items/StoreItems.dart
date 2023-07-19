@@ -3,17 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/detail/store_detail.dart';
+// MyRestaurantItem
 
-class MyRestaurantItem extends StatelessWidget {
+class StoreItems extends StatelessWidget {
   final String searchKeyword; // searchKeyword를 매개변수로 추가
+  final String documentName; // documentName을 매개변수로 추가
 
-  const MyRestaurantItem({Key? key, required this.searchKeyword}) : super(key: key);
+  const StoreItems({Key? key, required this.searchKeyword, required this.documentName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: FirebaseFirestore.instance
-          .collection('restaurant')
+          .collection(documentName) // documentName을 사용하여 적절한 컬렉션을 선택
           .where('name', isGreaterThanOrEqualTo: searchKeyword.toLowerCase())
           .orderBy('name')
           .snapshots(),

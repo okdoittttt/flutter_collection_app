@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../items/bottom_nav_bar.dart';
-import '../items/ecoshop_item.dart';
-import '../items/restaurant_item.dart';
+import '../items/StoreItems.dart';
 
 class StorePage extends StatefulWidget {
   const StorePage({super.key});
@@ -14,6 +13,8 @@ class StorePage extends StatefulWidget {
 
 class _StorePageState extends State<StorePage> {
   String searchKeyword = '';
+  // 초기 Store Document는 restaurant으로 설정(index 0)
+  String documentName = 'restaurant';
 
   @override
   Widget build(BuildContext context) {
@@ -126,6 +127,21 @@ class _StorePageState extends State<StorePage> {
                               ),
                             ),
                           ],
+                          onTap: (index) {
+                            if (index == 0) {
+                              setState(() {
+                                documentName = 'restaurant';
+                              });
+                            } else if (index == 1) {
+                              setState(() {
+                                documentName = 'ecoshop';
+                              });
+                            } else {
+                              setState(() {
+                                documentName = 'restaurant';
+                              });
+                            }
+                          },
                         ),
                       ),
                       Expanded(
@@ -135,21 +151,21 @@ class _StorePageState extends State<StorePage> {
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyRestaurantItem(searchKeyword: searchKeyword);
+                                return StoreItems(searchKeyword: searchKeyword, documentName: documentName);
                               },
                             ),
                             ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyEcoShopItem(searchKeyword: searchKeyword);
+                                return StoreItems(searchKeyword: searchKeyword, documentName: documentName);
                               },
                             ),
                             ListView.builder(
                               padding: EdgeInsets.zero,
                               itemCount: 1, // 데이터 개수에 맞게 조정
                               itemBuilder: (context, index) {
-                                return MyRestaurantItem(searchKeyword: searchKeyword);
+                                return StoreItems(searchKeyword: searchKeyword, documentName: documentName);
                               },
                             ),
                           ],

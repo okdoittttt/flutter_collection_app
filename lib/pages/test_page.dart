@@ -3,7 +3,7 @@
 //
 // import '../items/bottom_nav_bar.dart';
 // import '../items/ecoshop_item.dart';
-// import '../items/restaurant_item.dart';
+// import '../items/StoreItems.dart';
 //
 // class TestPages extends StatefulWidget {
 //   const TestPages({super.key});
