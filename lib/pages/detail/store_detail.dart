@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_sns_test/items/bottom_nav_bar.dart';
 
 import 'package:flutter_sns_test/model/map_and_call_model.dart';
 
@@ -11,6 +9,9 @@ class StoreDetailPage extends StatefulWidget {
   final String img;
   final String location;
   final String rating;
+  final String longitude;
+  final String latitude;
+  final String tel;
 
   const StoreDetailPage({
     Key? key,
@@ -18,6 +19,9 @@ class StoreDetailPage extends StatefulWidget {
     required this.img,
     required this.location,
     required this.rating,
+    required this.longitude,
+    required this.latitude,
+    required this.tel,
   }) : super(key: key);
 
   @override
@@ -35,15 +39,6 @@ class _StoreDetailPage extends State<StoreDetailPage> {
   Widget build(BuildContext context) {
     double ratingFloat = double.parse(widget.rating);
 
-    // // Call 버튼을 터치했을 때 전화 연결하는 함수
-    // void call() async {
-    //   const phoneNumber = 01000000000; // 전화번호 샘플
-    //   if (await canLaunch('tel:$phoneNumber')) {
-    //     await launch('tel:$phoneNumber');
-    //   } else {
-    //     print('전화를 걸 수 없습니다.');
-    //   }
-    // }
     return GestureDetector(
       // onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
       child: Scaffold(
@@ -141,7 +136,7 @@ class _StoreDetailPage extends State<StoreDetailPage> {
                                 children: [
                                   Expanded(
                                     child: GestureDetector(
-                                      onTap: () => mapncall.openmap(),
+                                      onTap: () => mapncall.openmap(widget.latitude, widget.longitude),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -179,7 +174,7 @@ class _StoreDetailPage extends State<StoreDetailPage> {
                                   ),
                                   Expanded(
                                     child: GestureDetector(
-                                      onTap: () => mapncall.call(),
+                                      onTap: () => mapncall.call('+821012341234'),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
                                         mainAxisAlignment: MainAxisAlignment.center,
@@ -239,8 +234,6 @@ class _StoreDetailPage extends State<StoreDetailPage> {
               ],
             ),
           ),
-
-
         ),
         // bottomNavigationBar: MybottomBar(),
       ),

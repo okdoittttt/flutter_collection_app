@@ -8,7 +8,9 @@ class StoreItems extends StatelessWidget {
   final String searchKeyword; // searchKeyword를 매개변수로 추가
   final String documentName; // documentName을 매개변수로 추가
 
-  const StoreItems({Key? key, required this.searchKeyword, required this.documentName}) : super(key: key);
+  const StoreItems(
+      {Key? key, required this.searchKeyword, required this.documentName})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +25,19 @@ class StoreItems extends StatelessWidget {
           // Firebase에서 가져온 문서 개수만큼 위젯을 출력합니다.
           return Column(
             children: snapshot.data!.docs.map((DocumentSnapshot document) {
-              Map<String, dynamic>? data = document.data() as Map<String, dynamic>?;
+              Map<String, dynamic>? data =
+                  document.data() as Map<String, dynamic>?;
               String name = data?['name'] ?? '';
               String img = data?['img'] ?? '';
               String location = data?['location'] ?? '';
               String rating = data?['rating'] ?? '';
+              String latitude = data?['latitude'] ?? '';
+              String longitude = data?['longitude'] ?? '';
+              String tel = data?['tel'] ?? '';
 
               // 검색어가 비어있거나 이름에 검색어가 포함된 경우에만 출력
-              if (searchKeyword.isEmpty || name.toLowerCase().contains(searchKeyword.toLowerCase())) {
+              if (searchKeyword.isEmpty ||
+                  name.toLowerCase().contains(searchKeyword.toLowerCase())) {
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -41,6 +48,9 @@ class StoreItems extends StatelessWidget {
                           location: location,
                           img: img,
                           rating: rating,
+                          latitude: latitude,
+                          longitude: longitude,
+                          tel: tel,
                         ),
                       ),
                     );
