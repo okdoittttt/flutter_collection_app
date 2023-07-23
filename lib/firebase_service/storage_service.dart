@@ -15,7 +15,7 @@ class Storage {
     File file = File(filePath);
 
     try {
-      await storage.ref('profile/$fileName').putFile(file);
+      await storage.ref('test_img/$fileName').putFile(file);
       print("Success! $fileName");
     } on firebase_core.FirebaseException catch (e) {
       print(e);

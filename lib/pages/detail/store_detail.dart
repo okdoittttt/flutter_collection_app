@@ -83,7 +83,7 @@ class _StoreDetailPage extends State<StoreDetailPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Text(
-                            'Primary Physician',
+                            '비건식당 OR 친환경 상점',
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),

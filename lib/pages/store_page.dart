@@ -83,13 +83,13 @@ class _StorePageState extends State<StorePage> {
                             ),
                           ),
                         ),
-                        IconButton(
-                          onPressed: () {
-                            print('Search Button Press...');
-                            print(searchKeyword);
-                          },
-                          icon: Icon(Icons.more),
-                        ),
+                        // IconButton(
+                        //   onPressed: () {
+                        //     print('Search Button Press...');
+                        //     print(searchKeyword);
+                        //   },
+                        //   icon: Icon(Icons.more),
+                        // ),
                       ],
                     ),
                   ),
@@ -104,7 +104,8 @@ class _StorePageState extends State<StorePage> {
                       Align(
                         alignment: Alignment(0, 0),
                         child: TabBar(
-                          labelColor: Colors.black,
+                          mouseCursor: null,
+                          labelColor: Colors.lightBlueAccent,
                           unselectedLabelColor: Colors.grey,
                           indicatorColor: Colors.blue,
                           tabs: [
@@ -144,6 +145,7 @@ class _StorePageState extends State<StorePage> {
                           },
                         ),
                       ),
+                      SizedBox(height: 10,),  // TabBar()와 TabBarView 사이 거리 조정
                       Expanded(
                         child: TabBarView(
                           children: [
