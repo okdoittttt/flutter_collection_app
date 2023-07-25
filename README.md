@@ -13,6 +13,7 @@ Flutter와 Firebase를 사용한 도감 앱.
 - file_picker: ^5.3.2
 - flutter_rating_bar: ^4.0.1
 - url_launcher: ^6.1.12
+- tflite: ^1.1.2
 
 ## 구현완료한 목록
 - (Firebase) 회원가입, 로그인, ID/PW 찾기, 로그아웃

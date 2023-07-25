@@ -110,7 +110,7 @@ class _CollectionPageState extends State<CollectionPage> {
                           indicatorColor: Colors.blue,
                           tabs: [
                             Tab(
-                              text: '동물 도감',
+                              text: '동물/곤충 도감',
                               icon: Icon(
                                 Icons.cruelty_free,
                               ),

@@ -1,290 +1,52 @@
-// import 'package:flutter/cupertino.dart';
 // import 'package:flutter/material.dart';
+// import 'package:flutter_sns_test/model/tflite_model.dart'; // 위에서 정의한 Classifier 클래스의 파일 경로에 따라 import 문을 수정하세요. // 위에서 정의한 Classifier 클래스의 파일 경로에 따라 import 문을 수정하세요.
 //
-// class StoreDetailPage extends StatefulWidget {
-//   final String name;
-//   final String img;
-//   final String location;
-//   final String rating;
-//
-//   const StoreDetailPage({
-//     Key? key,
-//     required this.name,
-//     required this.img,
-//     required this.location,
-//     required this.rating,
-//   }) : super(key: key);
-//
-//   @override
-//   State<StoreDetailPage> createState() => _StoreDetailPage();
+// void main() {
+//   runApp(MyApp());
 // }
 //
-// class _StoreDetailPage extends State<StoreDetailPage> {
+// class MyApp extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
-//     return GestureDetector(
-//       // onTap: () => FocusScope.of(context).requestFocus(_model.unfocusNode),
-//       child: Scaffold(
-//         backgroundColor: Colors.white,
-//         appBar: AppBar(
-//           centerTitle: true,
-//           title: Text(
-//             widget.name,
-//             style: TextStyle(color: Colors.black),),
-//           backgroundColor: Colors.white,
-//         ),
-//         body: SafeArea(
-//           top: true,
-//           child: Column(
-//             mainAxisSize: MainAxisSize.max,
-//             children: [
-//               Padding(
-//                 padding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
-//                 child: ClipRRect(
-//                   borderRadius: BorderRadius.circular(8),
-//                   child: Image.network(
-//                     widget.img,
-//                     width: double.infinity,
-//                     height: 330,
-//                     fit: BoxFit.cover,
-//                   ),
-//                 ),
-//               ),
-//               Padding(
-//                 padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 8),
-//                 child: Container(
-//                   width: double.infinity,
-//                   decoration: BoxDecoration(
-//                     color: Colors.white,
-//                     borderRadius: BorderRadius.circular(8),
-//                   ),
-//                   child: Padding(
-//                     padding: EdgeInsetsDirectional.fromSTEB(12, 12, 12, 12),
-//                     child: Column(
-//                       mainAxisSize: MainAxisSize.max,
-//                       children: [
-//                         Text(
-//                           'Primary Physician',
-//                         ),
-//                         Padding(
-//                           padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-//                           child: Text(
-//                             widget.name,
-//                             style: TextStyle(
-//                               fontWeight: FontWeight.bold,
-//                               fontSize: 24,
-//                             ),
-//                           ),
-//                         ),
-//                         Text(
-//                             widget.location,
-//                             style: TextStyle(
-//                               fontSize: 16,
-//                               fontWeight: FontWeight.normal,
-//                             )
-//                         ),
-//                         Padding(
-//                           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
-//                           // child:
-//                           // RatingBar.builder(
-//                           //   onRatingUpdate: (newValue) => setState(
-//                           //           () => _model.ratingBarValue = newValue),
-//                           //   itemBuilder: (context, index) => Icon(
-//                           //     Icons.star_rounded,
-//                           //     color: FlutterFlowTheme.of(context).warning,
-//                           //   ),
-//                           //   direction: Axis.horizontal,
-//                           //   initialRating: _model.ratingBarValue ??= 4,
-//                           //   unratedColor:
-//                           //   FlutterFlowTheme.of(context).alternate,
-//                           //   itemCount: 5,
-//                           //   itemSize: 24,
-//                           //   glowColor: FlutterFlowTheme.of(context).warning,
-//                           // ),
-//                         ),
-//                         Padding(
-//                           padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 12),
-//                           child: Container(
-//                             width: double.infinity,
-//                             height: 70,
-//                             decoration: BoxDecoration(
-//                               color: Colors.white,
-//                               borderRadius: BorderRadius.circular(12),
-//                               border: Border.all(
-//                                 color: Colors.white,
-//                                 width: 2,
-//                               ),
-//                             ),
-//                             child: Row(
-//                               mainAxisSize: MainAxisSize.max,
-//                               mainAxisAlignment: MainAxisAlignment.center,
-//                               children: [
-//                                 Expanded(
-//                                   child: Row(
-//                                     mainAxisSize: MainAxisSize.max,
-//                                     mainAxisAlignment: MainAxisAlignment.center,
-//                                     children: [
-//                                       Padding(
-//                                         padding: EdgeInsetsDirectional.fromSTEB(
-//                                             0, 12, 0, 12),
-//                                         child: Icon(
-//                                           Icons.chat_bubble_rounded,
-//                                           color: Colors.black,
-//                                           size: 24,
-//                                         ),
-//                                       ),
-//                                       Padding(
-//                                         padding: EdgeInsetsDirectional.fromSTEB(
-//                                             8, 0, 12, 0),
-//                                         child: Text(
-//                                           'Chat',
-//                                           // style: FlutterFlowTheme.of(context)
-//                                           //     .bodyMedium
-//                                           //     .override(
-//                                           //   fontFamily: 'Plus Jakarta Sans',
-//                                           //   color:
-//                                           //   FlutterFlowTheme.of(context)
-//                                           //       .primary,
-//                                           // ),
-//                                         ),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ),
-//                                 SizedBox(
-//                                   height: 100,
-//                                   child: VerticalDivider(
-//                                     thickness: 1,
-//                                     indent: 12,
-//                                     endIndent: 12,
-//                                     color: Colors.white,
-//                                   ),
-//                                 ),
-//                                 Expanded(
-//                                   child: Row(
-//                                     mainAxisSize: MainAxisSize.max,
-//                                     mainAxisAlignment: MainAxisAlignment.center,
-//                                     children: [
-//                                       Padding(
-//                                         padding: EdgeInsetsDirectional.fromSTEB(
-//                                             0, 12, 0, 12),
-//                                         child: Icon(
-//                                           Icons.call_rounded,
-//                                           color: Colors.white,
-//                                           size: 24,
-//                                         ),
-//                                       ),
-//                                       Padding(
-//                                         padding: EdgeInsetsDirectional.fromSTEB(
-//                                             8, 0, 12, 0),
-//                                         child: Text(
-//                                           'Call',
-//                                           // style: FlutterFlowTheme.of(context)
-//                                           //     .bodyMedium
-//                                           //     .override(
-//                                           //   fontFamily: 'Plus Jakarta Sans',
-//                                           //   color:
-//                                           //   FlutterFlowTheme.of(context)
-//                                           //       .primary,
-//                                           // ),
-//                                         ),
-//                                       ),
-//                                     ],
-//                                   ),
-//                                 ),
-//                               ],
-//                             ),
-//                           ),
-//                         ),
-//                         Align(
-//                           alignment: AlignmentDirectional(-1, 0),
-//                           child: Text(
-//                             'Doctor Bio',
-//                             // style:
-//                             // FlutterFlowTheme.of(context).bodySmall.override(
-//                             //   fontFamily: 'Plus Jakarta Sans',
-//                             //   fontWeight: FontWeight.bold,
-//                             // ),
-//                           ),
-//                         ),
-//                         Align(
-//                           alignment: AlignmentDirectional(-1, 0),
-//                           child: Padding(
-//                             padding:
-//                             EdgeInsetsDirectional.fromSTEB(0, 8, 0, 12),
-//                             child: Text(
-//                               'Dr. Will Hobbiton is a board-certified internal medicine specialist with over 15 years of experience treating patients in both hospital and private practice settings. She is passionate about preventive care and dedicated to providing her patients with the highest level of personalized medical attention, while staying updated on the latest advancements in her field.',
-//                               // style: FlutterFlowTheme.of(context).labelMedium,
-//                             ),
-//                           ),
-//                         ),
-//                         // Padding(
-//                         //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-//                         //   child: FFButtonWidget(
-//                         //     onPressed: () {
-//                         //       print('Button pressed ...');
-//                         //     },
-//                         //     text: 'Book Appointment',
-//                         //     options: FFButtonOptions(
-//                         //       width: double.infinity,
-//                         //       height: 48,
-//                         //       padding:
-//                         //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-//                         //       iconPadding:
-//                         //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-//                         //       color: FlutterFlowTheme.of(context).primary,
-//                         //       textStyle: FlutterFlowTheme.of(context)
-//                         //           .titleSmall
-//                         //           .override(
-//                         //         fontFamily: 'Plus Jakarta Sans',
-//                         //         color: Colors.white,
-//                         //       ),
-//                         //       borderSide: BorderSide(
-//                         //         color: Colors.transparent,
-//                         //         width: 1,
-//                         //       ),
-//                         //       borderRadius: BorderRadius.circular(8),
-//                         //     ),
-//                         //   ),
-//                         // ),
-//                         // Padding(
-//                         //   padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 12),
-//                         //   child: FFButtonWidget(
-//                         //     onPressed: () {
-//                         //       print('Button pressed ...');
-//                         //     },
-//                         //     text: 'Favorite Doctor',
-//                         //     icon: Icon(
-//                         //       Icons.favorite_border,
-//                         //       color: FlutterFlowTheme.of(context).primaryText,
-//                         //       size: 15,
-//                         //     ),
-//                         //     options: FFButtonOptions(
-//                         //       width: double.infinity,
-//                         //       height: 48,
-//                         //       padding:
-//                         //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-//                         //       iconPadding:
-//                         //       EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-//                         //       color: FlutterFlowTheme.of(context)
-//                         //           .secondaryBackground,
-//                         //       textStyle: FlutterFlowTheme.of(context).bodyLarge,
-//                         //       borderSide: BorderSide(
-//                         //         color: FlutterFlowTheme.of(context).alternate,
-//                         //         width: 1,
-//                         //       ),
-//                         //       borderRadius: BorderRadius.circular(8),
-//                         //     ),
-//                         //   ),
-//                         // ),
-//                       ],
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//             ],
-//           ),
-//         ),
+//     return MaterialApp(
+//       title: 'TFLite Classifier',
+//       home: HomeScreen(),
+//     );
+//   }
+// }
+//
+// class HomeScreen extends StatefulWidget {
+//   @override
+//   _HomeScreenState createState() => _HomeScreenState();
+// }
+//
+// class _HomeScreenState extends State<HomeScreen> {
+//   Classifier _classifier = Classifier();
+//   String? _name; // name 정보를 저장하기 위한 변수
+//
+//   @override
+//   void initState() {
+//     super.initState();
+//     _loadTFLiteName(); // TFLite name 정보를 로드하는 함수 호출
+//   }
+//
+//   Future<void> _loadTFLiteName() async {
+//     String name = await _classifier.loadtflite();
+//     setState(() {
+//       _name = name; // 로드한 name 정보를 상태에 저장
+//     });
+//   }
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('TFLite Classifier'),
+//       ),
+//       body: Center(
+//         child: _name != null
+//             ? Text(_name!) // name 정보를 출력
+//             : CircularProgressIndicator(), // 로딩 중에는 로딩 인디케이터를 보여줍니다.
 //       ),
 //     );
 //   }
