@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sns_test/items/image_file_upload.dart';
+import 'package:flutter_sns_test/pages/test_page.dart';
 
 class CollectionDetail extends StatefulWidget {
   final String name;
@@ -108,6 +109,15 @@ class _CollectionDetailState extends State<CollectionDetail> {
                             ),
                           ),
                           ImageFileUploadItem(),
+                          Center(
+                            child: FloatingActionButton(
+                              onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(
+                                  builder: (context) => TestPage(),
+                                ));
+                              },
+                            )
+                          ),
                         ],
                       ),
                     ),
