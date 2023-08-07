@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'items/bottom_nav_bar.dart';
 import 'items/mission_modal.dart';
+import 'items/achievement_modal.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({super.key});
@@ -21,16 +22,15 @@ class MainPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            IconButton(
-              icon: Icon(Icons.event_available, size: 40),
-              onPressed: () {},
-            ),
-            SizedBox(height: 10),
-            Icon(Icons.workspace_premium, size: 40),
+            Icon(Icons.event_available, size: 40),
+
+            AchievementModal(),
+
             SizedBox(height: 10),
             Icon(Icons.emoji_events, size: 40),
-            SizedBox(height: 8),
+
             MissionModal(),
+
             SizedBox(height: 10),
             Icon(Icons.shopping_cart, size: 40),
 
